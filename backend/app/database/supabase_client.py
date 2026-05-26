@@ -1,13 +1,9 @@
-from supabase import create_client, Client
-from app.config.config import (
-    SUPABASE_URL,
-    SUPABASE_SERVICE_ROLE_KEY,
-)
+from app.config.config import settings
+from supabase import Client, create_client
 
-if not SUPABASE_URL or not SUPABASE_SERVICE_ROLE_KEY:
+if not settings.SUPABASE_URL or not settings.SUPABASE_SERVICE_ROLE_KEY:
     raise ValueError("Supabase credentials missing in .env file")
 # Initialize Supabase client
 supabase: Client = create_client(
-    SUPABASE_URL,
-    SUPABASE_SERVICE_ROLE_KEY
+    settings.SUPABASE_URL, settings.SUPABASE_SERVICE_ROLE_KEY
 )
